@@ -1,4 +1,3 @@
-import "dotenv";
 import { useState } from 'react'
 import './App.css'
 
@@ -82,7 +81,7 @@ function App() {
   return (
     <div className='w-screen h-screen flex flex-col justify-center' style={default_bg}>
       <div className="flex justify-center w-full">
-        <div className="flex-col justify-center bg-white bg-opacity-75 w-1/2 h-min p-10 rounded-md border-4 border-orange-600">
+        <div className="flex-col justify-center bg-white bg-opacity-75 w-1/2 p-10 rounded-md border-4 border-orange-600" style={{maxWidth: '600px', minWidth: '400px'}}>
           <h1 className='text-center text-xl'>{initialText}</h1>
           <div className="flex flex-col flex-wrap justify-center gap-2 p-4 w-full" style={{alignSelf: 'center'}}>
             <div className="flex flex-wrap justify-center">
@@ -94,7 +93,7 @@ function App() {
                 <div className="text-xl">{maxTemp}</div>
               </div>
             </div>
-            <input type="text" value={cityName} onChange={event => setCityName(event.target.value)} className='text-xl p-1 border-2 border-black rounded-md mb-2' />
+            <input type="text" value={cityName} onChange={event => setCityName(event.target.value)} className='text-xl p-1 border-2 border-black w-3/5 rounded-md mb-2' style={{alignSelf: 'center'}} />
             <input type="button" value='Submit' className='text-xl py-1 px-4 rounded-md cursor-pointer border-2 w-fit border-black bg-blue-800 text-white' onClick={getWeather} style={{alignSelf: 'center'}} />
           </div>
         </div>
