@@ -13,6 +13,7 @@ function App() {
   const [minTemp, setMinTemp] = useState('')
   const [maxTemp, setMaxTemp] = useState('')
   const [country, setCountry] = useState('')
+  const [weatherDisplay, setWeatherDisplay] = useState('none')
   var city = ''
   
 
@@ -25,6 +26,7 @@ function App() {
     setMinTemp('')
     setMaxTemp('')
     setCountry('')
+    setWeatherDisplay('none')
   }
 
   const fetchingMsg = () => {
@@ -76,15 +78,16 @@ function App() {
     setFeelsLike(`Feels Like: ${Math.round(data.main.feels_like-273)}\u00B0C`)
     setMinTemp(`Minimum: ${Math.round(data.main.temp_min-273)}\u00B0C`)
     setMaxTemp(`Maximum: ${Math.round(data.main.temp_max-273)}\u00B0C`)
+    setWeatherDisplay('flex')
   }
 
   return (
     <div className='w-screen h-screen flex flex-col justify-center' style={default_bg}>
       <div className="flex justify-center w-full">
-        <div className="flex-col justify-center bg-white bg-opacity-75 w-1/2 p-10 rounded-md border-4 border-orange-600" style={{maxWidth: '600px', minWidth: '400px'}}>
+        <div id='container' className="flex-col justify-center bg-white bg-opacity-75 w-1/2 p-10 rounded-md border-4 border-orange-600" style={{maxWidth: '600px', alignContent: 'center'}}>
           <h1 className='text-center text-xl'>{initialText}</h1>
           <div className="flex flex-col flex-wrap justify-center gap-2 p-4 w-full" style={{alignSelf: 'center'}}>
-            <div className="flex flex-wrap justify-center">
+            <div className="flex flex-wrap justify-center" style={{display: weatherDisplay}}>
               <img src={iconUrl} alt="" width='300rem' />
               <div className="flex flex-col justify-center mb-2">
                 <div className="text-6xl font-bold">{currTemp}</div>
@@ -93,7 +96,7 @@ function App() {
                 <div className="text-xl">{maxTemp}</div>
               </div>
             </div>
-            <input type="text" value={cityName} onChange={event => setCityName(event.target.value)} className='text-xl p-1 border-2 border-black w-3/5 rounded-md mb-2' style={{alignSelf: 'center'}} />
+            <input id='inputFeild' type="text" value={cityName} onChange={event => setCityName(event.target.value)} className='text-xl p-1 border-2 border-black w-3/5 rounded-md mb-2' style={{alignSelf: 'center'}} />
             <input type="button" value='Submit' className='text-xl py-1 px-4 rounded-md cursor-pointer border-2 w-fit border-black bg-blue-800 text-white' onClick={getWeather} style={{alignSelf: 'center'}} />
           </div>
         </div>
