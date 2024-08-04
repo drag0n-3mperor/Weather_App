@@ -38,6 +38,7 @@ function App() {
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
     height: '100vh',
     width: '100%',
   }
@@ -70,7 +71,7 @@ function App() {
     console.log(data)
     city = data.name
     setCountry(data.sys.country)
-    setInitialText(`${city}, ${country}`)
+    setInitialText(`${city}, ${country.toString()}`)
     // console.log(data.weather[0])
     const iconCode = data.weather[0].icon;
     setIconUrl(`https://openweathermap.org/img/wn/${iconCode}@4x.png`)
@@ -82,14 +83,15 @@ function App() {
   }
 
   return (
-    <div className='w-screen h-screen flex flex-col justify-center' style={default_bg}>
+    <div className="w-screen h-screen" style={default_bg}>
+    <div className='w-full h-full flex flex-col justify-center'>
       <div className="flex justify-center w-full">
         <div id='container' className="flex-col justify-center bg-white bg-opacity-75 w-1/2 p-10 rounded-md border-4 border-orange-600" style={{maxWidth: '600px', alignContent: 'center'}}>
           <h1 className='text-center text-xl'>{initialText}</h1>
           <div className="flex flex-col flex-wrap justify-center gap-2 p-4 w-full" style={{alignSelf: 'center'}}>
-            <div className="flex flex-wrap justify-center" style={{display: weatherDisplay}}>
-              <img src={iconUrl} alt="" width='300rem' />
-              <div className="flex flex-col justify-center mb-2">
+            <div className="flex flex-wrap justify-center inset-x-4" style={{display: weatherDisplay}}>
+              <img id='image' src={iconUrl} alt="" />
+              <div id='temp-container' className="flex flex-col justify-center mb-4">
                 <div className="text-6xl font-bold">{currTemp}</div>
                 <div className="text-md mb-8">{feelsLike}</div>
                 <div className="text-xl">{minTemp}</div>
@@ -101,6 +103,7 @@ function App() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }
